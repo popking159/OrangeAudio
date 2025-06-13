@@ -1,2 +1,2 @@
-version='1.1'
-description='Fixed channel merging and added update notifications'
+version='1.0'
+description='1st version'
