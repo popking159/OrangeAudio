@@ -31,7 +31,7 @@ tar -czf $TMP_DIR/OrangeAudio_backup.tar.gz -C $INSTALL_DIR OrangeAudio 2>/dev/n
 
 # Install new version
 echo "Installing new version..."
-tar -xzf $TMP_DIR/OrangeAudio.tar.gz -C $INSTALL_DIR --no-same-owner --preserve-permissions
+tar -xzf $TMP_DIR/OrangeAudio.tar.gz -C $INSTALL_DIR
 
 # Check installation
 if [ $? -ne 0 ]; then
