@@ -1,2 +1,2 @@
-version='1.1'
-description='1-add custom file to select any file you want \n2-add merge mode to select merge only or merge and replace token \n3- add import and export token and specify a path for saving your token '
+version='1.2'
+description='1-add custom file to select any file you want \n2-add merge mode to select merge only or merge and replace token \n3- add import and export token and specify a path for saving your token \n4- add delete playlist '
