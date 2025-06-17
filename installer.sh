@@ -2,7 +2,7 @@
 #!/bin/sh
 
 # Orange Audio Plugin Installer
-# Version: 1.1
+# Version: 1.2
 # Author: MNASR
 #wget -q "--no-check-certificate" https://raw.githubusercontent.com/popking159/OrangeAudio/refs/heads/main/installer.sh -O - | /bin/sh
 
