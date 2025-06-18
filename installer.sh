@@ -9,7 +9,7 @@
 # Plugin files
 PACKAGE_URL="https://raw.githubusercontent.com/popking159/OrangeAudio/main/OrangeAudio.tar.gz"
 TMP_DIR="/tmp/orangeaudio_update"
-INSTALL_DIR="/usr/lib/enigma2/python/Plugins/Extensions/OrangeAudio"
+INSTALL_DIR="/usr/lib/enigma2/python/Plugins/Extensions"
 
 # Create temp directory
 mkdir -p $TMP_DIR
