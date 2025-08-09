@@ -2,52 +2,53 @@
 # OrangeAudio Plugin Installer
 # Version: 1.3
 # Author: MNASR
-#wget -q "--no-check-certificate" https://raw.githubusercontent.com/popking159/OrangeAudio/refs/heads/main/installer.sh -O - | /bin/sh
 
-echo ''
+echo 'Starting installation...'
 
-sleep 3s
+sleep 3
 
+# Remove existing installation
 if [ -d /usr/lib/enigma2/python/Plugins/Extensions/OrangeAudio ]; then
-echo "> removing previous package please wait..."
-sleep 2s 
-rm -rf /usr/lib/enigma2/python/Plugins/Extensions/OrangeAudio > /dev/null 2>&1
+    echo "> Removing previous installation..."
+    rm -rf /usr/lib/enigma2/python/Plugins/Extensions/OrangeAudio
 fi
 
+# Remove via opkg if installed
 status='/var/lib/opkg/status'
 package='enigma2-plugin-extensions-orangeaudio'
-
-if grep -q $package $status; then
-opkg remove $package > /dev/null 2>&1
+if grep -q "$package" "$status"; then
+    echo "> Removing opkg package..."
+    opkg remove "$package"
 fi
 
-sleep 2s
+sleep 2  # Fixed sleep syntax
 
-echo "downloading OrangeAudio..."
-wget -O  /var/volatile/tmp/OrangeAudio.tar.gz https://github.com/popking159/ssupport/raw/main/OrangeAudio.tar.gz
-echo "Installing OrangeAudio..."
-tar -xzf /var/volatile/tmp/OrangeAudio.tar.gz -C /
-rm -rf /var/volatile/tmp/OrangeAudio.tar.gz > /dev/null 2>&1
-sleep 2s
+# Download and install
+echo "> Downloading OrangeAudio..."
+wget -q --show-progress -O /tmp/OrangeAudio.tar.gz \
+    "https://github.com/popking159/ssupport/raw/main/OrangeAudio.tar.gz"
+
+if [ $? -ne 0 ]; then
+    echo "ERROR: Download failed!"
+    exit 1
+fi
+
+echo "> Installing..."
+tar -xzf /tmp/OrangeAudio.tar.gz -C /
+if [ $? -ne 0 ]; then
+    echo "ERROR: Extraction failed!"
+    exit 1
+fi
+
+rm -f /tmp/OrangeAudio.tar.gz
+sleep 2
 
 sync
-echo "#########################################################"
-echo "#########################################################"
-#echo "Installing dependency files"
-#opkg install python3-codecs python3-compression python3-core python3-difflib python3-json python3-requests python3-xmlrpc unrar python3-beautifulsoup4
-
-
-# ============================================================================================================
-sleep 2
-sync
-echo "==================================================================="
-echo "===                          FINISHED                           ==="
-echo "===                           MNASR                             ==="
-echo "==================================================================="
-sleep 2
-echo "==================================================================="
-echo "             Orange Audio update completed successfully!           "
-echo "==================================================================="
-
+echo "========================================================="
+echo "===                      FINISHED                     ==="
+echo "===                       MNASR                       ==="
+echo "========================================================="
+echo "       Orange Audio installed successfully!              "
+echo "========================================================="
 
 exit 0
