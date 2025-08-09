@@ -1,32 +1,29 @@
 #!/bin/sh
 # OrangeAudio Plugin Installer
-# Version: 1.3
+# Version: 1.4
 # Author: MNASR
 
-echo 'Starting installation...'
+echo "Starting installation..."
 
 sleep 3
 
-# Remove existing installation
 if [ -d /usr/lib/enigma2/python/Plugins/Extensions/OrangeAudio ]; then
     echo "> Removing previous installation..."
     rm -rf /usr/lib/enigma2/python/Plugins/Extensions/OrangeAudio
 fi
 
-# Remove via opkg if installed
-status='/var/lib/opkg/status'
-package='enigma2-plugin-extensions-orangeaudio'
-if grep -q "$package" "$status"; then
+status_file='/var/lib/opkg/status'
+package_name='enigma2-plugin-extensions-orangeaudio'
+
+if [ -f "$status_file" ] && grep -q "$package_name" "$status_file"; then
     echo "> Removing opkg package..."
-    opkg remove "$package"
+    opkg remove "$package_name"
 fi
 
-sleep 2  # Fixed sleep syntax
+sleep 2
 
-# Download and install
 echo "> Downloading OrangeAudio..."
-wget -q --show-progress -O /tmp/OrangeAudio.tar.gz \
-    "https://github.com/popking159/ssupport/raw/main/OrangeAudio.tar.gz"
+wget -q -O /tmp/OrangeAudio.tar.gz "https://github.com/popking159/ssupport/raw/main/OrangeAudio.tar.gz"
 
 if [ $? -ne 0 ]; then
     echo "ERROR: Download failed!"
@@ -45,8 +42,8 @@ sleep 2
 
 sync
 echo "========================================================="
-echo "===                      FINISHED                     ==="
-echo "===                       MNASR                       ==="
+echo "===                       FINISHED                     ==="
+echo "===                        MNASR                       ==="
 echo "========================================================="
 echo "       Orange Audio installed successfully!              "
 echo "========================================================="
