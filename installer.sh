@@ -1,49 +1,55 @@
-
 #!/bin/sh
-
-# Orange Audio Plugin Installer
-# Version: 1.2
+# OrangeAudio Plugin Installer
+# Version: 1.1
 # Author: MNASR
 #wget -q "--no-check-certificate" https://raw.githubusercontent.com/popking159/OrangeAudio/refs/heads/main/installer.sh -O - | /bin/sh
 
-# Plugin files
-PACKAGE_URL="https://raw.githubusercontent.com/popking159/OrangeAudio/main/OrangeAudio.tar.gz"
-TMP_DIR="/tmp/orangeaudio_update"
-INSTALL_DIR="/usr/lib/enigma2/python/Plugins/Extensions"
+######### Only These two lines to edit with new version ######
+#version='1.1'
+##############################################################
+echo ''
 
-# Create temp directory
-mkdir -p $TMP_DIR
+sleep 3s
 
-# Download package
-echo "Downloading Orange Audio update..."
-wget -q $PACKAGE_URL -O $TMP_DIR/OrangeAudio.tar.gz
-
-# Check download
-if [ $? -ne 0 ]; then
-    echo "Error: Failed to download package!"
-    rm -rf $TMP_DIR
-    exit 1
+if [ -d /usr/lib/enigma2/python/Plugins/Extensions/OrangeAudio ]; then
+echo "> removing previous package please wait..."
+sleep 2s 
+rm -rf /usr/lib/enigma2/python/Plugins/Extensions/OrangeAudio > /dev/null 2>&1
 fi
 
-# Backup current version
-echo "Backing up current version..."
-tar -czf $TMP_DIR/OrangeAudio_backup.tar.gz -C $INSTALL_DIR OrangeAudio 2>/dev/null
+status='/var/lib/opkg/status'
+package='enigma2-plugin-extensions-orangeaudio'
 
-# Install new version
-echo "Installing new version..."
-tar -xzf $TMP_DIR/OrangeAudio.tar.gz -C $INSTALL_DIR
-
-# Check installation
-if [ $? -ne 0 ]; then
-    echo "Error: Installation failed! Restoring backup..."
-    tar -xzf $TMP_DIR/OrangeAudio_backup.tar.gz -C $INSTALL_DIR --no-same-owner --preserve-permissions
-    rm -rf $TMP_DIR
-    exit 1
+if grep -q $package $status; then
+opkg remove $package > /dev/null 2>&1
 fi
 
-# Clean up
-echo "Cleaning up..."
-rm -rf $TMP_DIR
+sleep 2s
 
-echo "Orange Audio update completed successfully!"
+echo "downloading OrangeAudio..."
+wget -O  /var/volatile/tmp/OrangeAudio.tar.gz https://github.com/popking159/ssupport/raw/main/OrangeAudio.tar.gz
+echo "Installing OrangeAudio..."
+tar -xzf /var/volatile/tmp/OrangeAudio.tar.gz -C /
+rm -rf /var/volatile/tmp/OrangeAudio.tar.gz > /dev/null 2>&1
+sleep 2s
+
+sync
+echo "#########################################################"
+echo "#########################################################"
+#echo "Installing dependency files"
+#opkg install python3-codecs python3-compression python3-core python3-difflib python3-json python3-requests python3-xmlrpc unrar python3-beautifulsoup4
+
+
+# ============================================================================================================
+sleep 2
+sync
+echo "==================================================================="
+echo "===                          FINISHED                           ==="
+echo "===                           MNASR                             ==="
+echo "==================================================================="
+sleep 2
+echo "==================================================================="
+echo "             Orange Audio update completed successfully!           "
+echo "==================================================================="
+
 exit 0
