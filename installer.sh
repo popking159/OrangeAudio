@@ -1,6 +1,6 @@
 #!/bin/sh
 # OrangeAudio Plugin Installer
-# Version: 1.4
+# Version: 1.3
 # Author: MNASR
 
 echo "Starting installation..."
@@ -23,7 +23,7 @@ fi
 sleep 2
 
 echo "> Downloading OrangeAudio..."
-wget -q -O /tmp/OrangeAudio.tar.gz "https://github.com/popking159/ssupport/raw/main/OrangeAudio.tar.gz"
+wget -q -O /tmp/OrangeAudio.tar.gz "https://github.com/popking159/OrangeAudio/raw/refs/heads/main/OrangeAudio.tar.gz"
 
 if [ $? -ne 0 ]; then
     echo "ERROR: Download failed!"
