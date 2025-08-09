@@ -16,7 +16,7 @@ status_file='/var/lib/opkg/status'
 package_name='enigma2-plugin-extensions-orangeaudio'
 
 if [ -f "$status_file" ] && grep -q "$package_name" "$status_file"; then
-    echo "> Removing opkg package..."
+    echo "> Removing old opkg package..."
     opkg remove "$package_name"
 fi
 
@@ -42,8 +42,8 @@ sleep 2
 
 sync
 echo "========================================================="
-echo "===                      FINISHED                     ==="
-echo "===                       MNASR                       ==="
+echo "===                       FINISHED                     ==="
+echo "===                        MNASR                       ==="
 echo "========================================================="
 echo "       Orange Audio installed successfully!              "
 echo "========================================================="
