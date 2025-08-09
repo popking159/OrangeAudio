@@ -45,11 +45,5 @@ fi
 echo "Cleaning up..."
 rm -rf $TMP_DIR
 
-# Restart Enigma2
-echo "Restarting Enigma2..."
-init 4
-sleep 2
-init 3
-
 echo "Orange Audio update completed successfully!"
 exit 0
