@@ -1,12 +1,9 @@
 #!/bin/sh
 # OrangeAudio Plugin Installer
-# Version: 1.1
+# Version: 1.3
 # Author: MNASR
 #wget -q "--no-check-certificate" https://raw.githubusercontent.com/popking159/OrangeAudio/refs/heads/main/installer.sh -O - | /bin/sh
 
-######### Only These two lines to edit with new version ######
-#version='1.1'
-##############################################################
 echo ''
 
 sleep 3s
@@ -51,5 +48,6 @@ sleep 2
 echo "==================================================================="
 echo "             Orange Audio update completed successfully!           "
 echo "==================================================================="
+
 
 exit 0
