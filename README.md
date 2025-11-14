@@ -1,1 +1,1 @@
-OrangeAudio plugin is a tool to activate your orang audio subscription , also you can merge any audio files , the plugin is working on IPaudio Pro and IPaudio plus , token import and export funcyion
+OrangeAudio plugin is a tool to activate your orang audio subscription , also you can merge any audio files , the plugin is working on IPaudio Pro IPaudio plus and IPAudio 7.4, token import and export funcyion and channel arrangement function
